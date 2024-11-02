@@ -1,3 +1,6 @@
+let globalCountryName;
+let globalFoodName;
+let guesses;
 async function fetchData() {
     try {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
@@ -26,6 +29,8 @@ async function fetchData() {
         };
 
         // Return the dish object
+        globalCountryName = dish.country;
+        globalFoodName = dish.name;
         return dish;
 
     } catch (error) {
@@ -67,6 +72,7 @@ async function loadDish() {
 
 
 function displayDish(dish) {
+    guesses=0;
     document.getElementById("food-image").src = dish.image;
     document.getElementById("food-name").textContent = 'Name (Reveals after correct guess)';
     
@@ -91,19 +97,33 @@ function displayDish(dish) {
 
 function submitGuess() {
     const userGuess = document.getElementById("guess-input").value.trim().toLowerCase();
-    const correctCountry = window.currentDish.country.toLowerCase();
+    /*const correctCountry = window.currentDish.country.toLowerCase();*/
     const feedback = document.getElementById("feedback");
 
-    if (correctCountry.includes(userGuess)) {
-        feedback.textContent = "Correct! Great job!";
-        revealDishName();
+    if (userGuess === globalCountryName.toLowerCase()) {
+        if (guesses < 10000)
+        {
+            feedback.textContent = "Correct! Great job!";
+            document.getElementById("food-name").textContent = 'Name: ' + globalFoodName ;
+            // Optionally load a new dish after a delay
+            setTimeout(loadDish, 10000);
+        }
+       guesses = 10001;
+        //revealDishName();
         // Optionally load a new dish after a delay
-        setTimeout(loadDish, 5000);
+       // if less than real work else BigInt, other func small
+    
+        
     } else {
-        feedback.textContent = "Try again!";
+        guesses++;
+        feedback.textContent = "Try again! Hint: country name begins with a "+ globalCountryName.charAt(0);
+        if (guesses > 2)
+        {
+            feedback.textContent = "Too many tries, the dish is "+globalCountryName;
+        }
+
     }
 }
-
 
 function revealDishName() {
     document.getElementById("food-name").textContent = window.currentDish.name;
