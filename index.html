@@ -1,8 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <h1>Hello World</h1>
-        <p>I'm hosted with Github Pages.</p>
-        <p>Hello world</p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodGuessr</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Food Guesser</h1>
+        </header>
+        
+        <main>
+            <div class="image-container">
+                <img id="food-image" src="" alt="Food Dish">
+            </div>
+            <div class="info">
+                <h2 id="food-name">Name (Reveals after 2 guesses)</h2>
+                <p><strong>Ingredients:</strong> <span id="ingredients">Ingredients go here...</span></p>
+                <p><strong>Description:</strong> <span id="description">Description goes here...</span></p>
+            </div>
+            
+            <div class="guess-section">
+                <input type="text" id="guess-input" placeholder="Guess the country or region...">
+                <button onclick="submitGuess()">Submit Guess</button>
+                <p id="feedback"></p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
