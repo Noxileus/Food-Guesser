@@ -366,6 +366,25 @@ main {
   }
 }
 
+
+  #clickMe
+  {
+    background-color: #5cb85c; /* Green */
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin: 2px 1px;
+    cursor: pointer;
+  }
+
+#feedback {
+    margin-top: 10px;
+    color: #333;
+
 @media screen and (max-width: 480px) {
   .dropdown {
       top: 0.5rem;
@@ -389,6 +408,7 @@ main {
   #ingredient-list {
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
+
 }
 
 @media screen and (max-width: 480px) {
