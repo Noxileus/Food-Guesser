@@ -1,112 +1,153 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Changed from min-height to height */
+  background-color: #f0f0f0;
+  overflow: hidden; /* Prevent scrolling */
 }
 
 .container {
-    max-width: 600px;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  width: 90%;
+  max-width: 600px; /* Further reduced */
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 header {
-    margin-bottom: 20px;
+  margin-bottom: 10px; /* Reduced margin */
 }
 
 .image-container {
-    margin-bottom: 20px;
+  position: relative;
+  width: 70%; /* Reduced width */
+  max-width: 800px; /* Reduced max-width */
+  margin: 0 auto 15px; /* Reduced margin */
+  padding-bottom: 85%; /* Reduced height ratio */
+  overflow: hidden;
 }
 
-img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
+.image-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Compact styling for other elements */
 .info {
-    text-align: left;
-    margin-bottom: 20px;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
 .guess-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Use gap instead of margins */
 }
 
 #guess-input {
-    padding: 10px;
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  max-width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #5cb85c;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #5cb85c;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #34ac34;
+  background-color: #34ac34;
 }
 
-/*below is code for the hover button (Top left)*/
-  .dropdown {
-    display: inline-block;
-    position:absolute;
-    top:0;
-    left: 10px;
-  }
-  
-  .dropdown-options {
-    display: none;
-    position: absolute;
-    overflow: auto;
-    text-align: left;
-    background-color:#fff;
-    border-radius:5px;
-    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-  }
-  
-  .dropdown:hover .dropdown-options {
-    display: block;
-  }
-  
-  .dropdown-options a {
-    display: block;
-    color: #000000;
-    padding: 5px;
-    text-decoration: none;
-    padding:10px 20px;
-  }
-  
-  .dropdown-options a:hover {
-    color: #0a0a23;
-    background-color: #ddd;
-    border-radius:5px;
-  }
+.dropdown {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  overflow: auto;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+}
+
+.dropdown:hover .dropdown-options {
+  display: block;
+}
+
+.dropdown-options a {
+  display: block;
+  color: #000000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.dropdown-options a:hover {
+  color: #0a0a23;
+  background-color: #ddd;
+  border-radius: 5px;
+}
 
 #feedback {
-    margin-top: 10px;
-    color: #333;
+  margin-top: 8px;
+  color: #333;
+}
+
+/* Media Queries */
+@media screen and (max-height: 768px) {
+  .container {
+      padding: 10px;
+  }
+  
+  .image-container {
+      padding-bottom: 40%;
+  }
+  
+  header {
+      margin-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .container {
+      width: 95%;
+  }
+  
+  .image-container {
+      width: 85%;
+      padding-bottom: 50%;
+  }
 }
