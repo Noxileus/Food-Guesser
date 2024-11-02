@@ -1,39 +1,160 @@
-body{
-    background-color: #ffe5b4;
+:root {
+    --primary-color: #FF6B6B;
+    --secondary-color: #4ECDC4;
+    --accent-color: #45B7D1;
+    --background-color: #f8f9fa;
+    --text-color: #2d3436;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Original animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Food animations */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes floatAround {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(50px, -50px) rotate(90deg);
+    }
+    50% {
+        transform: translate(0, -100px) rotate(180deg);
+    }
+    75% {
+        transform: translate(-50px, -50px) rotate(270deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+body {
+    background: linear-gradient(135deg, var(--background-color), #ffffff);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow: hidden;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
     position: relative;
+    color: var(--text-color);
 }
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 0% 0%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+    z-index: -1;
+}
+
+
 #homePage {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-}
-h1{
-    color: #ff6600;
-    font-size: 4em;
-    text-align: center;
-    margin: 0;
-}
-button{
-    font-size: 1.5em;
-    padding: 15px 30px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeIn 1s ease-out;
 }
 
-button:hover{
-    background-color: #0056b3;
+h1 {
+    color: var(--primary-color);
+    font-size: 4.5em;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    animation: float 6s ease-in-out infinite;
+    text-shadow: var(--shadow);
+}
+
+button {
+    font-size: 1.5em;
+    padding: 15px 40px;
+    color: white;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+}
+
+button:hover::after {
+    transform: translateX(100%);
+    transition: transform 0.6s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3em;
+    }
+    
+    button {
+        font-size: 1.2em;
+        padding: 12px 30px;
+    }
+    
+    #homePage {
+        padding: 1rem;
+    }
+
+    .food-item {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .food-item {
+        animation-duration: 12s;
+    }
 }
