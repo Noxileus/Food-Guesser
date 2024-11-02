@@ -44,5 +44,33 @@ function revealDishName() {
     document.getElementById("food-name").textContent = foodData[currentDishIndex].name;
 }
 
+async function fetchData() {
+    const response = await fetch('https://world.openfoodfacts.org/cgi/search.pl?search_terms=&page_size=50&json=true');
+
+    if (!response) {
+        throw new Error('Could not fetch the resources');
+    }
+
+    const data = await response.json();
+
+    const products = data.products;
+
+    const validProducts = products.filter(product => product.image_url && product.product_name);
+
+    if (validProducts.length === 0) {
+        throw new Error('No valid products found');
+    }
+
+    const randomIndex = Math.floor(Math.random() * validProducts.length);
+    const product = validProducts[randomIndex];
+
+
+    const foodImg = product.image_url;
+    const foodName = product.product_name;
+    const foodIngredients = product.ingredients_text;
+    const foodDescription = product.brands_tags;
+
+    return { foodImg, foodName, foodIngredients, foodDescription };
+}
 // Initial load
 window.onload = loadDish;
