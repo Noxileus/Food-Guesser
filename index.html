@@ -8,26 +8,22 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Food Guesser</h1>
-        </header>
-        
-        <main>
-            <div class="image-container">
-                <img id="food-image" src="" alt="Food Dish">
-            </div>
-            <div class="info">
+        <h1>Food Guesser</h1>
+        <div id="game-container">
+            <img id="food-image" src="" alt="Food Image" class="img-fluid">
+            <div id="food-info">
+                <h2 id="food-name">Name (Reveals after correct guess)</h2>
+                <p><strong>Ingredients:</strong> <span id="ingredients"></span></p>
+                <p><strong>Instructions:</strong> <span id="description"></span></p>
+                <!-- The country is stored here but not displayed -->
                 <p id="country" style="display: none;"></p>
-                <p><strong>Ingredients:</strong> <span id="ingredients">Ingredients go here...</span></p>
-                <p><strong>Description:</strong> <span id="description">Description goes here...</span></p>
             </div>
-            
-            <div class="guess-section">
-                <input type="text" id="guess-input" placeholder="Guess the country or region...">
+            <div id="guess-container">
+                <input type="text" id="guess-input" placeholder="Guess the country">
                 <button onclick="submitGuess()">Submit Guess</button>
-                <p id="feedback"></p>
             </div>
-        </main>
+            <div id="feedback"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
