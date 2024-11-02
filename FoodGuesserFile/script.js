@@ -2,77 +2,102 @@ async function fetchData() {
     try {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
 
-        if (!response) {
+        if (!response.ok) {
             throw new Error('Could not fetch the resources');
         }
 
         const data = await response.json();
         const meal = data.meals[0];
 
-        //Extracting the data
+        // Extracting the data using getIngredients function
         const foodImg = meal.strMealThumb;
         const foodName = meal.strMeal;
-        const foodIngredients = meal.strIngredient1;
+        const foodIngredients = getIngredients(meal);
         const foodDescription = meal.strInstructions;
         const foodCountry = meal.strArea;
-        const foodCategory = meal.strCategory;
 
-        document.getElementById("food-image").src = foodImg;
-        document.getElementById("food-name").textContent = foodName;
-        document.getElementById("ingredients").textContent = foodIngredients;
-        document.getElementById("description").textContent = foodDescription;
-        document.getElementById("country").textContent = foodCountry;
-        document.getElementById("category").textContent = foodCategory;
+        // Build a dish object
+        const dish = {
+            name: foodName,
+            ingredients: foodIngredients,
+            description: foodDescription,
+            country: foodCountry,
+            image: foodImg
+        };
 
-        window.currentMeal = meal;
+        // Return the dish object
+        return dish;
+
     } catch (error) {
         console.error('Error:', error);
     }
 }
 
-function loadDish() {
-    fetchData()
-        .then(data => {
-            const dish = {
-                name: data.foodName,
-                ingredients: data.foodIngredients,
-                description: data.foodDescription,
-                country: data.country,
-                image: data.foodImg
-            };
-            displayDish(dish);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+
+function getIngredients(meal) {
+    let ingredients = '';
+
+    for (let i = 1; i <= 20; i++) {
+        const ingredient = meal[`strIngredient${i}`];
+        const measure = meal[`strMeasure${i}`];
+
+        // Check if ingredient is not null, undefined, or empty
+        if (ingredient && ingredient.trim() !== '') {
+            ingredients += `${measure ? measure.trim() : ''} ${ingredient.trim()}, `;
+        }
+    }
+    // Remove the trailing comma and space
+    return ingredients.slice(0, -2);
 }
+
+
+async function loadDish() {
+    try {
+        const dish = await fetchData();
+        if (dish) {
+            displayDish(dish);
+            // Store the dish globally for access in other functions
+            window.currentDish = dish;
+        } else {
+            console.error('Dish data is undefined');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
 
 function displayDish(dish) {
     document.getElementById("food-image").src = dish.image;
-    document.getElementById("food-name").textContent = dish.name;
-    document.getElementById("ingredients").textContent =   dish.ingredients;
+    document.getElementById("food-name").textContent = 'Name (Reveals after correct guess)';
+    document.getElementById("ingredients").textContent = dish.ingredients;
     document.getElementById("description").textContent = dish.description;
+    document.getElementById("country").textContent = dish.country;
     document.getElementById("guess-input").value = "";
     document.getElementById("guess-input").focus();
 }
 
+
 function submitGuess() {
     const userGuess = document.getElementById("guess-input").value.trim().toLowerCase();
-    const correctCountry = foodData[currentDishIndex].country.toLowerCase();
+    const correctCountry = window.currentDish.country.toLowerCase();
     const feedback = document.getElementById("feedback");
 
-    if (userGuess === correctCountry) {
+    if (correctCountry.includes(userGuess)) {
         feedback.textContent = "Correct! Great job!";
         revealDishName();
-        // Move to next dish or reset
+        // Optionally load a new dish after a delay
+        setTimeout(loadDish, 5000);
     } else {
         feedback.textContent = "Try again!";
     }
 }
 
+
 function revealDishName() {
-    document.getElementById("food-name").textContent = foodData[currentDishIndex].name;
+    document.getElementById("food-name").textContent = window.currentDish.name;
 }
+
 
 
 // Initial load

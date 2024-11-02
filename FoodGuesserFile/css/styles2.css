@@ -1,0 +1,39 @@
+body{
+    background-color: #ffe5b4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+#homePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+h1{
+    color: #ff6600;
+    font-size: 4em;
+    text-align: center;
+    margin: 0;
+}
+button{
+    font-size: 1.5em;
+    padding: 15px 30px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+button:hover{
+    background-color: #0056b3;
+}

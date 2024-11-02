@@ -28,16 +28,13 @@
             </div>
             <div class="info">
                 <p id="country" style="display: none;"></p>
-                <p><strong>Ingredients:</strong> <span id="ingredients">Ingredients go here...</span></p>
-                <p><strong>Description:</strong> <span id="description">Description goes here...</span></p>
             </div>
-            
-            <div class="guess-section">
-                <input type="text" id="guess-input" placeholder="Guess the country or region...">
+            <div id="guess-container">
+                <input type="text" id="guess-input" placeholder="Guess the country">
                 <button onclick="submitGuess()">Submit Guess</button>
-                <p id="feedback"></p>
             </div>
-        </main>
+            <div id="feedback"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
