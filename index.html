@@ -1,35 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodGuessr</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8" />
+    <meta name ="viewport" content = "width = device-width, initial-scale = 1.0">
+    <title> Food Guesser</title>
+    <link rel="stylesheet" href="css/styles2.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Food Guesser</h1>
-        </header>
-        
-        <main>
-            <div class="image-container">
-                <img id="food-image" src="" alt="Food Dish">
-            </div>
-            <div class="info">
-                <p id="country" style="display: none;"></p>
-                <p><strong>Ingredients:</strong> <span id="ingredients">Ingredients go here...</span></p>
-                <p><strong>Description:</strong> <span id="description">Description goes here...</span></p>
-            </div>
-            
-            <div class="guess-section">
-                <input type="text" id="guess-input" placeholder="Guess the country or region...">
-                <button onclick="submitGuess()">Submit Guess</button>
-                <p id="feedback"></p>
-            </div>
-        </main>
+    <div id = "homepage">
+        <h1> Food Guesser</h1>
+        <button onclick="startGame()">Play</button>
     </div>
-
-    <script src="script.js"></script>
+    <div id="gamePage" style="display: none;">
+        <h2>Guess where the food is from</h2>
+    </div>
+    <script>
+        function startGame(){
+            window.location.href = 'index.html';
+        }
+    </script>
 </body>
 </html>
