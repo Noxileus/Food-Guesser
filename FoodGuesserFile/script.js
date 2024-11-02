@@ -13,14 +13,14 @@ async function fetchData() {
         const foodImg = meal.strMealThumb;
         const foodName = meal.strMeal;
         const foodIngredients = getIngredients(meal);
-        const foodDescription = meal.strInstructions;
+        //const foodDescription = meal.;
         const foodCountry = meal.strArea;
 
         // Build a dish object
         const dish = {
             name: foodName,
             ingredients: foodIngredients,
-            description: foodDescription,
+            //description: foodDescription,
             country: foodCountry,
             image: foodImg
         };
@@ -35,19 +35,18 @@ async function fetchData() {
 
 
 function getIngredients(meal) {
-    let ingredients = '';
+    const ingredientsArray = [];
 
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 8; i++) {
         const ingredient = meal[`strIngredient${i}`];
-        const measure = meal[`strMeasure${i}`];
 
         // Check if ingredient is not null, undefined, or empty
         if (ingredient && ingredient.trim() !== '') {
-            ingredients += `${measure ? measure.trim() : ''} ${ingredient.trim()}, `;
+            ingredientsArray.push(`${ingredient}`);
         }
     }
     // Remove the trailing comma and space
-    return ingredients.slice(0, -2);
+    return ingredientsArray;
 }
 
 
@@ -70,7 +69,19 @@ async function loadDish() {
 function displayDish(dish) {
     document.getElementById("food-image").src = dish.image;
     document.getElementById("food-name").textContent = 'Name (Reveals after correct guess)';
-    document.getElementById("ingredients").textContent = dish.ingredients;
+    
+    //clear existing ingredients
+    const ingredientsList = document.getElementById("ingredient-list");
+    ingredientsList.innerHTML = '';
+
+    //populate ingredients list
+    dish.ingredients.forEach(ingredient => {
+        const li = document.createElement("li");
+        li.textContent = ingredient;
+        ingredientsList.appendChild(li);
+    })
+    
+    //document.getElementById("ingredients").textContent = dish.ingredients;
     document.getElementById("description").textContent = dish.description;
     document.getElementById("country").textContent = dish.country;
     document.getElementById("guess-input").value = "";
