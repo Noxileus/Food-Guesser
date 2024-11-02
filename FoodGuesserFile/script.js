@@ -119,13 +119,9 @@ function submitGuess() {
         //revealDishName();
 
         feedback.textContent = "Correct! Great job!";
-        alert("correct");
         revealDishName();
 
-        // Optionally load a new dish after a delay
-       // if less than real work else BigInt, other func small
-    
-        
+
     } else {
         guesses++;
         feedback.textContent = "Try again! Hint: country name begins with a "+ globalCountryName.charAt(0);
@@ -133,10 +129,6 @@ function submitGuess() {
         {
             feedback.textContent = "Too many tries, the dish is "+globalCountryName;
         }
-
-
-        feedback.textContent =globalCountryName;
- 
 
     }
 }
