@@ -1,3 +1,5 @@
+let globalCountryName;
+
 async function fetchData() {
     try {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
@@ -26,6 +28,7 @@ async function fetchData() {
         };
 
         // Return the dish object
+        globalCountryName = dish.country;
         return dish;
 
     } catch (error) {
@@ -91,16 +94,18 @@ function displayDish(dish) {
 
 function submitGuess() {
     const userGuess = document.getElementById("guess-input").value.trim().toLowerCase();
-    const correctCountry = window.currentDish.country.toLowerCase();
+    /*const correctCountry = window.currentDish.country.toLowerCase();*/
     const feedback = document.getElementById("feedback");
 
-    if (correctCountry.includes(userGuess)) {
+    if (userGuess === globalCountryName.toLowerCase()) {
         feedback.textContent = "Correct! Great job!";
+        alert("correct");
         revealDishName();
         // Optionally load a new dish after a delay
         setTimeout(loadDish, 5000);
     } else {
-        feedback.textContent = "Try again!";
+        feedback.textContent =globalCountryName;
+        alert("wrong");
     }
 }
 
