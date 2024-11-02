@@ -1,4 +1,6 @@
 let globalCountryName;
+let globalFoodName;
+let guesses;
 
 async function fetchData() {
     try {
@@ -29,6 +31,8 @@ async function fetchData() {
 
         // Return the dish object
         globalCountryName = dish.country;
+        globalFoodName = dish.name;
+
         return dish;
 
     } catch (error) {
@@ -70,6 +74,7 @@ async function loadDish() {
 
 
 function displayDish(dish) {
+    guesses=0;
     document.getElementById("food-image").src = dish.image;
     document.getElementById("food-name").textContent = 'Name (Reveals after correct guess)';
     
@@ -97,21 +102,44 @@ function submitGuess() {
 
     //const correctCountry = window.currentDish.country.toLowerCase();
 
+
     /*const correctCountry = window.currentDish.country.toLowerCase();*/
     const feedback = document.getElementById("feedback");
 
     if (userGuess === globalCountryName.toLowerCase()) {
+
+        if (guesses < 10000)
+        {
+            feedback.textContent = "Correct! Great job!";
+            document.getElementById("food-name").textContent = 'Name: ' + globalFoodName ;
+            // Optionally load a new dish after a delay
+            setTimeout(loadDish, 10000);
+        }
+       guesses = 10001;
+        //revealDishName();
+
         feedback.textContent = "Correct! Great job!";
         alert("correct");
         revealDishName();
+
         // Optionally load a new dish after a delay
-        setTimeout(loadDish, 5000);
+       // if less than real work else BigInt, other func small
+    
+        
     } else {
+        guesses++;
+        feedback.textContent = "Try again! Hint: country name begins with a "+ globalCountryName.charAt(0);
+        if (guesses > 2)
+        {
+            feedback.textContent = "Too many tries, the dish is "+globalCountryName;
+        }
+
+
         feedback.textContent =globalCountryName;
-        alert("wrong");
+ 
+
     }
 }
-
 
 function revealDishName() {
     document.getElementById("food-name").textContent = window.currentDish.name;
