@@ -1,6 +1,7 @@
 let globalCountryName;
 let globalFoodName;
 let guesses;
+
 async function fetchData() {
     try {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
@@ -31,6 +32,7 @@ async function fetchData() {
         // Return the dish object
         globalCountryName = dish.country;
         globalFoodName = dish.name;
+
         return dish;
 
     } catch (error) {
@@ -97,10 +99,15 @@ function displayDish(dish) {
 
 function submitGuess() {
     const userGuess = document.getElementById("guess-input").value.trim().toLowerCase();
+
+    //const correctCountry = window.currentDish.country.toLowerCase();
+
+
     /*const correctCountry = window.currentDish.country.toLowerCase();*/
     const feedback = document.getElementById("feedback");
 
     if (userGuess === globalCountryName.toLowerCase()) {
+
         if (guesses < 10000)
         {
             feedback.textContent = "Correct! Great job!";
@@ -110,6 +117,11 @@ function submitGuess() {
         }
        guesses = 10001;
         //revealDishName();
+
+        feedback.textContent = "Correct! Great job!";
+        alert("correct");
+        revealDishName();
+
         // Optionally load a new dish after a delay
        // if less than real work else BigInt, other func small
     
@@ -121,6 +133,10 @@ function submitGuess() {
         {
             feedback.textContent = "Too many tries, the dish is "+globalCountryName;
         }
+
+
+        feedback.textContent =globalCountryName;
+ 
 
     }
 }
