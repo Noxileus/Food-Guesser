@@ -20,32 +20,29 @@
                   <a href="/FoodGuesserFile/GamePage.html">Game Page</a>
                 </div>
               </div>
-          
-            <div class="image-container">
-                <img id="food-image" src="" alt="Food Dish">
-            </div>
-            <div class="info">
-                <p id="country" style="display: none;"></p>
-                <p id="food-name"></p>
-                <div id="ingredients-container">
-                    <h3>Ingredients</h3>
-                    <ul id="ingredient-list"></ul>
+    
+            <div class="scrollable-content">
+                <div class="image-container">
+                    <img id="food-image" src="" alt="Food Dish">
                 </div>
-                <!-- <div id="description-container">
-                    <h3>Description</h3>
-                    <p id="description"></p>
-                </div> 
-                !-->
+                <div class="info">
+                    <p id="country" style="display: none;"></p>
+                    <p id="food-name"></p>
+                    <div id="ingredients-container">
+                        <h3>Ingredients</h3>
+                        <ul id="ingredient-list"></ul>
+                    </div>
+                </div>
             </div>
+    
             <div id="guess-container">
                 <input type="text" id="guess-input" placeholder="Guess the country">
                 <button onclick="submitGuess()">Submit Guess</button>
                 <div id="feedback"></div>
                 <script src="script.js"></script>
             </div>
-        </div>
-    </div>
 
-
+            <div id="feedback"></div>
+        </main>
 </body>
 </html>
