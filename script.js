@@ -17,7 +17,7 @@ const foodData = [
     
 ];
 
-let currentDishIndex = 1;
+let currentDishIndex = 0;
 
 function loadDish() {
     const dish = foodData[currentDishIndex];
