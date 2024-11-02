@@ -91,7 +91,7 @@ function displayDish(dish) {
 
 function submitGuess() {
     const userGuess = document.getElementById("guess-input").value.trim().toLowerCase();
-    const correctCountry = window.currentDish.country.toLowerCase();
+    //const correctCountry = window.currentDish.country.toLowerCase();
     const feedback = document.getElementById("feedback");
 
     if (correctCountry.includes(userGuess)) {
