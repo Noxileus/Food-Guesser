@@ -1,7 +1,23 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <h1>Food Guesser</h1>
-        <p>I'm hosted with Github Pages.</p>
-    </body>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name ="viewport" content = "width = device-width, initial-scale = 1.0">
+    <title> Food Guesser</title>
+    <link rel="stylesheet" href="css/styles2.css">
+</head>
+<body>
+    <div id = "homepage">
+        <h1> Food Guesser</h1>
+        <button onclick="startGame()">Play</button>
+    </div>
+    <div id="gamePage" style="display: none;">
+        <h2>Guess where the food is from</h2>
+    </div>
+    <script>
+        function startGame(){
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
 </html>
