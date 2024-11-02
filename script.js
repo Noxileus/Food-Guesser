@@ -1,4 +1,3 @@
-// Sample data
 const foodData = [
     {
         name: "Francesinha",
