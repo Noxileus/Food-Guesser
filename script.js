@@ -1,4 +1,4 @@
-const foodData = [
+/*const foodData = [
     {
         name: "Francesinha",
         ingredients: "Bread, ham, linguiça, fresh sausage, steak, cheese, etc.",
@@ -15,15 +15,34 @@ const foodData = [
     },
     
 ];
+*/
 
-let currentDishIndex = 0;
+//let currentDishIndex = 0;
 
 function loadDish() {
-    const dish = foodData[currentDishIndex];
+    fetchData()
+        .then(data => {
+            const dish = {
+                name: data.foodName,
+                ingredients: data.foodIngredients,
+                description: data.foodDescription,
+                country: data.country,
+                image: data.foodImg
+            };
+            displayDish(dish);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function displayDish(dish) {
     document.getElementById("food-image").src = dish.image;
-    document.getElementById("food-name").textContent = "Name (Reveals after 2 guesses)";
-    document.getElementById("ingredients").textContent = dish.ingredients;
+    document.getElementById("food-name").textContent = dish.name;
+    document.getElementById("ingredients").textContent =   dish.ingredients;
     document.getElementById("description").textContent = dish.description;
+    document.getElementById("guess-input").value = "";
+    document.getElementById("guess-input").focus();
 }
 
 function submitGuess() {
