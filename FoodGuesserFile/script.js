@@ -171,7 +171,7 @@ function submitGuess() {
     const feedback = document.getElementById("feedback");
 
     if (userGuess === '') {
-        document.getElementById("feedback").textContent = "Guess box empty!";
+        document.getElementById("feedback").textContent = mealCache.findIndexf(currentMealIndex);
         return;
     }
 
