@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodGuessr</title>
+    <title>FoodGuesser</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -11,11 +11,11 @@
         <header>
             <h1>Food Guesser</h1>
         </header>
-        
+       
         <main>
-            <div class="Score-info">
-                <p>Score: <span id="score-display">0</span> </p>
-                
+            <div class="score-info">
+                <p id="score-text">Score: <span id="score-display">0</span> </p>
+                <p id="streak-text">Streak: <span id="streak-display">0</span></p>  
             </div>
             <div class="dropdown">
                 <button>Navigate</button>
@@ -23,39 +23,32 @@
                   <a href="index.html">Main Page</a>
                   <a href="GamePage.html">Game Page</a>
                 </div>
-              </div>
+            </div>
             <div class="scrollable-content">
                 <div class="image-container">
                     <img id="food-image" src="" alt="Food Dish">
                 </div>
                 <div class="info">
                     <p id="country" style="display: none;"></p>
-                    <p id="food-name"></p>
+                    <a id="food-name" target="_blank"></a>
                     <div id="ingredients-container">
                         <h3>Ingredients</h3>
                         <ul id="ingredient-list"></ul>
                     </div>
                 </div>
             </div>
-    
+           
             <div id="guess-container">
-                <input type="text" id="guess-input" placeholder="Guess the nationality!">
-                <button onclick="submitGuess()">Submit Guess</button>
-                <div id="feedback"></div>
-                <script src="script.js"></script>
-                <button onClick = "loadDish()">>></button>
-                
+                <button id="previous-button" onclick="loadDish(true)">Previous Food</button>
+                <div class="guess-input-group">
+                    <input type="text" id="guess-input" placeholder="Guess the nationality!">
+                    <button id="submit-guess-button" onclick="submitGuess()">Submit Guess</button>
+                </div>
+                <button id="next-button" onclick="loadNextFood()">Next Food</button>
+                <div id="feedback"></div>    
             </div>
-
-            <!--<input id="clickMe" type="button" value=">>" onclick="loadDish();" />-->
-            
-
-            <div id="feedback"></div>
-        </div>
-    </div>
-
-
-            <div id="feedback"></div>
+            <script src="script.js"></script>
         </main>
+    </div>
 </body>
 </html>
