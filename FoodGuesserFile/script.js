@@ -170,6 +170,11 @@ function submitGuess() {
     const correctCountry = window.currentDish.country.toLowerCase();
     const feedback = document.getElementById("feedback");
 
+    if (userGuess === '') {
+        document.getElementById("feedback").textContent = "Guess box empty!";
+        return;
+    }
+
     if (userGuess === correctCountry.toLowerCase()) {
         if (guesses < 10000) {
             feedback.textContent = "Correct! Great job!";
@@ -179,11 +184,10 @@ function submitGuess() {
             // Only load new dish if we're at the end of the cache
             if (currentMealIndex === mealCache.length - 1) {
                 setTimeout(loadDish, 3000);
-            }   
-            point++;
+            }
             streak++;
+            point++;
             document.getElementById("score-display").textContent = point;
-            document.getElementById("streak-display").textContent = streak;
         }
         guesses = 10001;
     } else {
@@ -192,11 +196,12 @@ function submitGuess() {
         if (guesses > 2) {
             streak = 0;
             feedback.textContent = "Too many tries, this is a  "+globalCountryName+ " dish";
-            document.getElementById("submit-guess-button").style.display = "none";
-            document.getElementById("guess-input").disabled = "true";
+            document.getElementById('guess-input').style.visibility = "hidden";
             setTimeout(loadDish, 3000);
         }
     }
+
+    document.getElementById("guess-input").value = "";
 }
 
 function revealDishName() {
@@ -206,6 +211,37 @@ function revealDishName() {
 
 }
 
+document.addEventListener('keydown', handleKeyPress);
+
+function handleKeyPress(event) {
+    // Get the active element to check if we're typing in the input field
+    const activeElement = document.activeElement;
+    const isInputFocused = activeElement.tagName === 'INPUT';
+    
+    switch(event.key) {
+        case 'Enter':
+            // Only submit if the input has text and we're at the latest dish
+            if (isInputFocused && document.getElementById('guess-input').value.trim() !== '' 
+                && currentMealIndex === mealCache.length - 1) {
+                submitGuess();
+            }
+            break;
+            
+        case 'ArrowLeft':
+            // Only navigate left if we're not typing and previous navigation is possible
+            if (!isInputFocused && currentMealIndex > 0) {
+                loadDish(true);
+            }
+            break;
+            
+        case 'ArrowRight':
+            // Only navigate right if we're not typing and next navigation is possible
+            if (!isInputFocused && currentMealIndex < mealCache.length - 1) {
+                loadNextFood();
+            }
+            break;
+    }
+}
 
 
 // Initial load

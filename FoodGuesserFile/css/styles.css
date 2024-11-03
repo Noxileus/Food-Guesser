@@ -264,7 +264,7 @@ main {
 .dropdown-options {
   display: none;
   position: absolute;
-  top: calc(100% + 2px);
+  top: calc(100% );
   left: 0;
   background: var(--card-bg);
   border-radius: 6px;
@@ -368,22 +368,20 @@ main {
     min-width: 80px;
   }
 
-  .dropdown {
-    top: 0.5rem;
-    left: 0.5rem;
+  .secret-button {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0.1;
+    transition: opacity 0.3s ease;
   }
   
-  .dropdown > button {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.8rem;
+  .secret-button:hover {
+    opacity: 0.3;
   }
-  
-  .dropdown-options {
-    min-width: 140px;
-  }
-  
-  .dropdown-options a {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-  }
-}
