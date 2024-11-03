@@ -165,8 +165,21 @@ button:hover::after {
 }
 
 @keyframes move {
-    0% { left: 100px; }
+    0% { left: 150px; }
     50% { left: 0; }
-    100% { left: 100px; }
+    100% { left: 150px; }
 }
+    .moving-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        animation: move 1s infinite alternate;
+    }
+
+
 
