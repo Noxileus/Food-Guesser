@@ -158,3 +158,15 @@ button:hover::after {
         animation-duration: 12s;
     }
 }
+
+.moving-image {
+    position: relative;
+    animation: move 5s infinite;
+}
+
+@keyframes move {
+    0% { left: 100px; }
+    50% { left: 0; }
+    100% { left: 100px; }
+}
+
