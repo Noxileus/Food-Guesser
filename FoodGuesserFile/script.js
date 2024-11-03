@@ -120,23 +120,25 @@ function submitGuess() {
             feedback.textContent = "Correct! Great job!";
             document.getElementById("food-name").textContent = 'Name: ' + globalFoodName ;
             // Optionally load a new dish after a delay
-            setTimeout(loadDish, 3000);
+            revealDishName();
+            setTimeout(loadDish, 1500);
+            point++;
+            
         }
        guesses = 10001;
         //revealDishName();
 
-        feedback.textContent = "Correct! Great job!";
-    point++;
-    document.getElementById("score-display").textContent = point;
-        revealDishName();
-
+        document.getElementById("score-display").textContent = point;
+        
 
     } else {
         guesses++;
-        feedback.textContent = "Try again! Hint: country name begins with a "+ globalCountryName.charAt(0);
+        feedback.textContent = "Try again! Hint: Nationality name begins with a "+ globalCountryName.charAt(0);
         if (guesses > 2)
         {
             feedback.textContent = "Too many tries, this is a  "+globalCountryName+ " dish";
+            document.getElementById('guess-input').style.display('none');
+            
         }
 
     }

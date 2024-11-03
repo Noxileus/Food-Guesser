@@ -1,1 +1,1 @@
-test
+This is a hackathon project that was developed by our group at Louisiana State University. Our prompt was to create a project that promotes users to travel internationally, learn about foreign lands, or assists users in international countries, or anything that relates to tourism. We collaborated 
