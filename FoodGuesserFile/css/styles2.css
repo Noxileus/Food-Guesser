@@ -167,7 +167,7 @@ button:hover::after {
 @keyframes move {
     0% { left: 150px; }
     50% { left: 0; }
-    100% { left: 150px; }
+    100% { left: 300px; }
 }
     .moving-button {
         padding: 10px 20px;

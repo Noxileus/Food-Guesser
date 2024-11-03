@@ -78,7 +78,7 @@ async function loadDish() {
 
 
 function displayDish(dish) {
-   
+    document.getElementById('guess-input').style.visibility = "visible";
     guesses=0;
     document.getElementById("food-image").src = dish.image;
     document.getElementById("food-name").textContent = 'Name (Reveals after correct guess)';
@@ -119,10 +119,12 @@ function submitGuess() {
         {
             feedback.textContent = "Correct! Great job!";
             document.getElementById("food-name").textContent = 'Name: ' + globalFoodName ;
+            
             // Optionally load a new dish after a delay
             revealDishName();
             setTimeout(loadDish, 1500);
             point++;
+            
             
         }
        guesses = 10001;
@@ -137,7 +139,7 @@ function submitGuess() {
         if (guesses > 2)
         {
             feedback.textContent = "Too many tries, this is a  "+globalCountryName+ " dish";
-            document.getElementById('guess-input').style.display('none');
+            document.getElementById('guess-input').style.visibility = "hidden";
             
         }
 
