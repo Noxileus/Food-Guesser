@@ -113,7 +113,7 @@ function submitGuess() {
             feedback.textContent = "Correct! Great job!";
             document.getElementById("food-name").textContent = 'Name: ' + globalFoodName ;
             // Optionally load a new dish after a delay
-            setTimeout(loadDish, 10000);
+            setTimeout(loadDish, 3000);
         }
        guesses = 10001;
         //revealDishName();
