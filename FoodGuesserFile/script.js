@@ -1,3 +1,5 @@
+let point=0;
+let dishNumber = 1;
 let globalCountryName;
 let globalFoodName;
 let guesses;
@@ -64,6 +66,8 @@ async function loadDish() {
             displayDish(dish);
             // Store the dish globally for access in other functions
             window.currentDish = dish;
+            document.getElementById("dish-number").textContent = `Dish #${dishNumber}`;
+            dishNumber++;
         } else {
             console.error('Dish data is undefined');
         }
@@ -74,6 +78,7 @@ async function loadDish() {
 
 
 function displayDish(dish) {
+   
     guesses=0;
     document.getElementById("food-image").src = dish.image;
     document.getElementById("food-name").textContent = 'Name (Reveals after correct guess)';
@@ -87,7 +92,9 @@ function displayDish(dish) {
         const li = document.createElement("li");
         li.textContent = ingredient;
         ingredientsList.appendChild(li);
+     
     })
+
     
     //document.getElementById("ingredients").textContent = dish.ingredients;
     document.getElementById("description").textContent = dish.description;
@@ -119,6 +126,8 @@ function submitGuess() {
         //revealDishName();
 
         feedback.textContent = "Correct! Great job!";
+    point++;
+    document.getElementById("score-display").textContent = point;
         revealDishName();
 
 
@@ -127,7 +136,7 @@ function submitGuess() {
         feedback.textContent = "Try again! Hint: country name begins with a "+ globalCountryName.charAt(0);
         if (guesses > 2)
         {
-            feedback.textContent = "Too many tries, the dish is "+globalCountryName;
+            feedback.textContent = "Too many tries, this is a  "+globalCountryName+ " dish";
         }
 
     }
